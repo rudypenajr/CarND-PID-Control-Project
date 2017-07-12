@@ -1,6 +1,15 @@
 /*
  * Trial and Error:
- * 0.05, 0.0, 0.0 - oscillation at curves
+ * 0.05, 0.0, 0.0 - manages to go pass bridge, oscillation gets wonky
+ * 0.05, 0.0, 0.05 - same as prior variables
+ * 0.05, 0.0001, 0.05 - falls before the bridge, oscillations goes wonky
+ * 0.5, 0.0001, 0.05 - oscillation craziness
+ * 0.5, 0.0001, 1.0 - same as previous variables
+ * 0.5, 0.0001, 2.0 - Success, Full Lap but oscillation a bit too much
+ * 0.5, 0.0001, 3.0 - Success, Full Lap, not as many crazy oscillations
+ * 0.5, 0.0001, 4.0 - Success, Full Lap, turns really having issue
+ * 0.5, 0.0001, 5.0 - Better, but similar issueas previous parameters
+ * 0.25, 0.0001, 5.0 - Best so far!
 */
 
 
@@ -39,8 +48,7 @@ int main()
   uWS::Hub h;
 
   PID pid;
-  // TODO: Initialize the pid variable.
-  pid.Init(0.05, 0.001, 0.0);
+  pid.Init(0.25, 0.0001, 5.0);
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
